@@ -21,10 +21,8 @@
 #include "tier0/memalloc.h"
 #include "tier0/memdbgon.h"
 
-#ifdef _WIN32
 #pragma warning (disable:4100)
 #pragma warning (disable:4514)
-#endif
 
 //-----------------------------------------------------------------------------
 
@@ -337,6 +335,7 @@ void CUtlBlockMemory<T,I>::Purge( int numElements )
 	}
 
 	int nBlockSize = NumElementsInBlock();
+	int nBlocksOld = m_nBlocks;
 	int nBlocks = ( numElements + nBlockSize - 1 ) / nBlockSize;
 
 	// If the number of blocks is the same as the allocated number of blocks, we are done.
